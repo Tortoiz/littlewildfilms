@@ -1,0 +1,15 @@
+---
+interface Props {
+  entry: any;
+  index: number;
+}
+const { entry, index } = Astro.props;
+const { data } = entry;
+---
+<article class:list={{ "archive-card": true, "archive-card-offset": index % 2 === 1 }}>
+  <a class="archive-card-media" href={`/films/${entry.id}`} style={`background-image: url('${data.heroImage}')`}>
+    <span class="placeholder-signal">film / {String(index + 1).padStart(2, "0")}</span>
+    <span class="archive-card-title"><small>{data.format} · {data.year}</small><strong>{data.title}</strong></span>
+  </a>
+  <div class="archive-card-caption"><div><h2>{data.title}</h2><p>{data.logline}</p></div><span>{data.status}</span></div>
+</article>

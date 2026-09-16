@@ -1,0 +1,11 @@
+---
+const { entry } = Astro.props;
+const { data } = entry;
+const dateLabel = data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+---
+<article class="journal-card">
+  <a class="journal-card-image" href={`/journal/${entry.id}`} style={`background-image: url('${data.coverImage}')`} aria-label={`Read ${data.title}`}>
+    <span class="placeholder-signal">note / {data.category}</span>
+  </a>
+  <div class="journal-card-caption"><div><span>{dateLabel} · {data.readingTime}</span><h2><a href={`/journal/${entry.id}`}>{data.title}</a></h2><p>{data.excerpt}</p></div><span aria-hidden="true">↗</span></div>
+</article>

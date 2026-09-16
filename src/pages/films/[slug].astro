@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FilmDetail from "../../components/FilmDetail.astro";
+
+export async function getStaticPaths() {
+  const films = await getCollection("films");
+  return Promise.all(films.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { params: { slug: entry.id }, props: { entry, Content } };
+  }));
+}
+
+const { entry, Content } = Astro.props;
+const description = entry.data.seoDescription ?? entry.data.logline;
+---
+<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description}>
+  <FilmDetail entry={entry} Content={Content} />
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+interface JournalEntry {
+  id: string;
+  data: {
+    title: string;
+    date: Date;
+    category: string;
+    excerpt: string;
+    coverImage: string;
+    coverAlt: string;
+    readingTime: string;
+    relatedFilm?: string;
+  };
+}
+
+interface Props {
+  entry: JournalEntry;
+  Content: any;
+}
+
+const { entry, Content } = Astro.props;
+const { data } = entry;
+const dateLabel = data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+<article class="detail-page journal-detail">
+  <header class="journal-hero section-light">
+    <div class="detail-kicker">{data.category} · {dateLabel} · {data.readingTime}</div>
+    <h1>{data.title}</h1>
+    <p class="journal-excerpt">{data.excerpt}</p>
+  </header>
+
+  <figure class="journal-cover section-dark">
+    <img src={data.coverImage} alt={data.coverAlt} />
+  </figure>
+
+  <section class="journal-body section-light">
+    <div class="journal-body-grid">
+      <aside class="journal-aside">
+        <span class="section-kicker">[ Field note ]</span>
+        {data.relatedFilm && <a href={`/films/${data.relatedFilm}`}>Part of a film project <span aria-hidden="true">↗</span></a>}
+      </aside>
+      <div class="rich-copy journal-copy"><Content /></div>
+    </div>
+  </section>
+
+  <nav class="detail-next section-dark" aria-label="Journal navigation">
+    <span>Keep wandering</span>
+    <a href="/journal">Back to all notes <span aria-hidden="true">↗</span></a>
+  </nav>
+</article>

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2200
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "Animated short",
+        "Live-action short",
+        "Hybrid film",
+        "Visual experiment"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Animation",
+        "Live action",
+        "AI-assisted",
+        "Experiment"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Released",
+        "In development",
+        "Coming soon",
+        "Archived"
+      ]
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "logline": {
+      "type": "string"
+    },
+    "heroImage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "heroAlt": {
+      "type": "string"
+    },
+    "posterImage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trailerUrl": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "credits": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "name"
+        ]
+      }
+    },
+    "gallery": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "src": {
+            "type": "string",
+            "minLength": 1
+          },
+          "alt": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "src",
+          "alt"
+        ]
+      }
+    },
+    "relatedPosts": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "seoDescription": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "year",
+    "format",
+    "category",
+    "status",
+    "logline",
+    "heroImage",
+    "heroAlt"
+  ]
+}

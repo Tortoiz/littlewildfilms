@@ -1,0 +1,73 @@
+---
+interface FilmEntry {
+  id: string;
+  data: {
+    title: string;
+    year: number;
+    format: string;
+    category: string;
+    status: string;
+    logline: string;
+    heroImage: string;
+    heroAlt: string;
+    posterImage?: string;
+    trailerUrl?: string;
+    credits: { role: string; name: string }[];
+    gallery: { src: string; alt: string; caption?: string }[];
+  };
+}
+
+interface Props {
+  entry: FilmEntry;
+  Content: any;
+}
+
+const { entry, Content } = Astro.props;
+const { data } = entry;
+---
+<article class="detail-page film-detail">
+  <header class="detail-hero section-dark">
+    <div class="detail-hero-image" style={`background-image: url('${data.heroImage}')`} role="img" aria-label={data.heroAlt}></div>
+    <div class="detail-hero-scrim"></div>
+    <div class="detail-hero-copy">
+      <div class="detail-kicker">{data.category} · {data.status}</div>
+      <h1>{data.title}</h1>
+      <p class="detail-logline">{data.logline}</p>
+    </div>
+    <div class="detail-meta">{data.format} · {data.year}</div>
+  </header>
+
+  <section class="detail-intro section-light">
+    <div class="section-kicker">[ Project note ]</div>
+    <div class="detail-intro-grid">
+      <p class="detail-lead">{data.logline}</p>
+      <div class="detail-prose rich-copy"><Content /></div>
+    </div>
+  </section>
+
+  {data.gallery.length > 0 && (
+    <section class="detail-gallery section-dark" aria-label={`${data.title} stills`}>
+      <div class="section-kicker">[ Visual development ]</div>
+      <div class="gallery-grid">
+        {data.gallery.map((image, index) => (
+          <figure class:list={{ "gallery-frame": true, "gallery-frame-wide": index === 0 }}>
+            <img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} />
+            {image.caption && <figcaption>{image.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="credits section-light">
+    <div class="section-kicker">[ Credits ]</div>
+    <div class="credits-grid">
+      {data.credits.map((credit) => <div class="credit-row"><span>{credit.role}</span><strong>{credit.name}</strong></div>)}
+    </div>
+  </section>
+
+  <nav class="detail-next section-dark" aria-label="Project navigation">
+    <span>Next frame</span>
+    <a href="/films">Back to all films <span aria-hidden="true">↗</span></a>
+  </nav>
+</article>

@@ -1,11 +1,19 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import JournalCard from "../../components/JournalCard.astro";
+
+const posts = (await getCollection("journal", ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <BaseLayout title="Journal — Little Wild Films" description="Field notes, process, and experiments from Little Wild Films." dark={false}>
-  <main class="inner-page section-light">
-    <div class="inner-page-kicker">[ 02 — Field notes ]</div>
-    <h1>Notes from<br /><em>the process.</em></h1>
-    <p class="inner-page-intro">The Journal will become a Markdown-powered archive of process notes, references, and experiments.</p>
-    <a class="dark-link" href="/">Return home <span aria-hidden="true">↗</span></a>
+  <main class="journal-archive section-light">
+    <header class="archive-header">
+      <div class="inner-page-kicker">[ 02 — Field notes ]</div>
+      <h1>Notes from<br /><em>the process.</em></h1>
+      <p>A living notebook of film development, visual experiments, references, and the questions that stay with us between shots.</p>
+    </header>
+    <section class="journal-grid" aria-label="Journal archive">
+      {posts.map((entry) => <JournalCard entry={entry} />)}
+    </section>
   </main>
 </BaseLayout>

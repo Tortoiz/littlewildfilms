@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import JournalDetail from "../../components/JournalDetail.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("journal", ({ data }) => !data.draft);
+  return Promise.all(posts.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { params: { slug: entry.id }, props: { entry, Content } };
+  }));
+}
+
+const { entry, Content } = Astro.props;
+const description = entry.data.seoDescription ?? entry.data.excerpt;
+---
+<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} dark={false}>
+  <JournalDetail entry={entry} Content={Content} />
+</BaseLayout>
