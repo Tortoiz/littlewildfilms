@@ -1,0 +1,28 @@
+---
+const logoSrc = "/manus-storage/logo-little-wild-films_ab28ea8f.png";
+const isHome = Astro.url.pathname === "/";
+const linkFor = (section: string) => (isHome ? `#${section}` : `/${section}`);
+---
+<header class="site-nav">
+  <a class="brand-lockup" href={isHome ? "#top" : "/"} aria-label="Little Wild Films home">
+    <img src={logoSrc} alt="Little Wild Films logo" />
+    <span>Little Wild<br />Films</span>
+  </a>
+  <nav class="desktop-nav" aria-label="Main navigation">
+    <a href={linkFor("films")}>Films</a>
+    <a href={linkFor("studio")}>Studio</a>
+    <a href={linkFor("journal")}>Journal</a>
+  </nav>
+  <a class="nav-contact" href={linkFor("contact")}>
+    Start a conversation <span aria-hidden="true">↗</span>
+  </a>
+  <details class="mobile-menu">
+    <summary aria-label="Open navigation"><span class="menu-glyph" aria-hidden="true">☰</span></summary>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href={linkFor("films")}>Films</a>
+      <a href={linkFor("studio")}>Studio</a>
+      <a href={linkFor("journal")}>Journal</a>
+      <a href={linkFor("contact")}>Contact <span aria-hidden="true">↗</span></a>
+    </nav>
+  </details>
+</header>

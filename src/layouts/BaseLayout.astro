@@ -1,0 +1,32 @@
+---
+import "../styles/global.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteNav from "../components/SiteNav.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  dark?: boolean;
+}
+
+const {
+  title = "Little Wild Films — Independent Cinema",
+  description = "Little Wild Films — independent cinema for an almost-real world.",
+  dark = true,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101310" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class:list={{ "page-shell": true, "page-dark": dark }}>
+    <SiteNav />
+    <slot />
+    <SiteFooter />
+  </body>
+</html>
