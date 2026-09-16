@@ -56,6 +56,17 @@ export default defineConfig({
   },
   vite: {
     plugins: [manusStorageProxy()],
+    server: {
+      allowedHosts: [
+        ".manus.computer",
+        ".manuspre.computer",
+        ".manus-asia.computer",
+        ".manuscomputer.ai",
+        ".manusvm.computer",
+        "localhost",
+        "127.0.0.1",
+      ],
+    },
   },
   build: {
     format: "directory",
