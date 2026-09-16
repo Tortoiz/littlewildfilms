@@ -5,15 +5,21 @@ import JournalDetail from "../../components/JournalDetail.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("journal", ({ data }) => !data.draft);
+  const films = await getCollection("films");
+  const sorted = [...posts].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   return Promise.all(posts.map(async (entry) => {
     const { Content } = await render(entry);
-    return { params: { slug: entry.id }, props: { entry, Content } };
+    const currentIndex = sorted.findIndex((post) => post.id === entry.id);
+    const nextEntry = sorted.length > 1 ? sorted[(currentIndex + 1) % sorted.length] : undefined;
+    const relatedFilm = entry.data.relatedFilm ? films.find((film) => film.id === entry.data.relatedFilm) : undefined;
+    return { params: { slug: entry.id }, props: { entry, Content, relatedFilm, nextEntry } };
   }));
 }
 
-const { entry, Content } = Astro.props;
+const { entry, Content, relatedFilm, nextEntry } = Astro.props;
 const description = entry.data.seoDescription ?? entry.data.excerpt;
+const structuredData = { "@context": "https://schema.org", "@type": "Article", headline: entry.data.title, description, datePublished: entry.data.date.toISOString(), image: entry.data.coverImage, author: { "@type": "Organization", name: "Little Wild Films" }, publisher: { "@type": "Organization", name: "Little Wild Films" } };
 ---
-<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} dark={false}>
-  <JournalDetail entry={entry} Content={Content} />
+<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} dark={false} type="article" ogImage={entry.data.coverImage} publishedTime={entry.data.date.toISOString()} structuredData={structuredData}>
+  <JournalDetail entry={entry} Content={Content} relatedFilm={relatedFilm} nextEntry={nextEntry} />
 </BaseLayout>

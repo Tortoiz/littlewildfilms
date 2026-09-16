@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import FilmCard from "../../components/FilmCard.astro";
+import FilmArchive from "../../components/FilmArchive.astro";
 
 const films = (await getCollection("films")).sort((a, b) => b.data.year - a.data.year);
 ---
@@ -12,8 +12,6 @@ const films = (await getCollection("films")).sort((a, b) => b.data.year - a.data
       <h1>Worlds in<br /><em>the making.</em></h1>
       <p>The moving-image archive of animated shorts, live-action studies, and visual experiments made between intuition and invention.</p>
     </header>
-    <section class="archive-grid" aria-label="Film archive">
-      {films.map((entry, index) => <FilmCard entry={entry} index={index} />)}
-    </section>
+    <FilmArchive films={films} />
   </main>
 </BaseLayout>

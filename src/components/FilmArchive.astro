@@ -1,0 +1,39 @@
+---
+import FilmCard from "./FilmCard.astro";
+const { films } = Astro.props;
+const genres = [...new Set(films.map((entry: any) => entry.data.category))].sort();
+const years = [...new Set(films.map((entry: any) => entry.data.year))].sort((a: number, b: number) => b - a);
+---
+<div class="film-filter-bar" aria-label="Filter films">
+  <div class="filter-group"><span>Filter by</span><button class="filter-button is-active" type="button" data-filter-category="all">All films</button>{genres.map((genre) => <button class="filter-button" type="button" data-filter-category={genre}>{genre}</button>)}</div>
+  <label class="year-filter">Year <select data-filter-year aria-label="Filter films by year"><option value="all">All years</option>{years.map((year) => <option value={year}>{year}</option>)}</select></label>
+</div>
+<section class="archive-grid" aria-label="Film archive" data-film-grid>
+  {films.map((entry: any, index: number) => <div class="film-filter-item" data-film-category={entry.data.category} data-film-year={entry.data.year}><FilmCard entry={entry} index={index} /></div>)}
+</section>
+<p class="filter-empty" data-filter-empty hidden>No films match those filters yet.</p>
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>("[data-filter-category]")];
+  const yearSelect = document.querySelector<HTMLSelectElement>("[data-filter-year]");
+  const items = [...document.querySelectorAll<HTMLElement>("[data-film-category]")];
+  const empty = document.querySelector<HTMLElement>("[data-filter-empty]");
+  let activeCategory = "all";
+  const applyFilters = () => {
+    const activeYear = yearSelect?.value || "all";
+    let visible = 0;
+    items.forEach((item) => {
+      const matchesCategory = activeCategory === "all" || item.dataset.filmCategory === activeCategory;
+      const matchesYear = activeYear === "all" || item.dataset.filmYear === activeYear;
+      const show = matchesCategory && matchesYear;
+      item.hidden = !show;
+      if (show) visible += 1;
+    });
+    if (empty) empty.hidden = visible > 0;
+  };
+  buttons.forEach((button) => button.addEventListener("click", () => {
+    activeCategory = button.dataset.filterCategory || "all";
+    buttons.forEach((candidate) => candidate.classList.toggle("is-active", candidate === button));
+    applyFilters();
+  }));
+  yearSelect?.addEventListener("change", applyFilters);
+</script>

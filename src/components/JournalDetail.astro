@@ -1,50 +1,16 @@
 ---
-interface JournalEntry {
-  id: string;
-  data: {
-    title: string;
-    date: Date;
-    category: string;
-    excerpt: string;
-    coverImage: string;
-    coverAlt: string;
-    readingTime: string;
-    relatedFilm?: string;
-  };
-}
+import RelatedCard from "./RelatedCard.astro";
 
-interface Props {
-  entry: JournalEntry;
-  Content: any;
-}
-
-const { entry, Content } = Astro.props;
+interface JournalEntry { id: string; data: { title: string; date: Date; category: string; excerpt: string; coverImage: string; coverAlt: string; readingTime: string; relatedFilm?: string; }; }
+interface Props { entry: JournalEntry; Content: any; relatedFilm?: any; nextEntry?: JournalEntry; }
+const { entry, Content, relatedFilm, nextEntry } = Astro.props;
 const { data } = entry;
 const dateLabel = data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 ---
 <article class="detail-page journal-detail">
-  <header class="journal-hero section-light">
-    <div class="detail-kicker">{data.category} · {dateLabel} · {data.readingTime}</div>
-    <h1>{data.title}</h1>
-    <p class="journal-excerpt">{data.excerpt}</p>
-  </header>
-
-  <figure class="journal-cover section-dark">
-    <img src={data.coverImage} alt={data.coverAlt} />
-  </figure>
-
-  <section class="journal-body section-light">
-    <div class="journal-body-grid">
-      <aside class="journal-aside">
-        <span class="section-kicker">[ Field note ]</span>
-        {data.relatedFilm && <a href={`/films/${data.relatedFilm}`}>Part of a film project <span aria-hidden="true">↗</span></a>}
-      </aside>
-      <div class="rich-copy journal-copy"><Content /></div>
-    </div>
-  </section>
-
-  <nav class="detail-next section-dark" aria-label="Journal navigation">
-    <span>Keep wandering</span>
-    <a href="/journal">Back to all notes <span aria-hidden="true">↗</span></a>
-  </nav>
+  <header class="journal-hero section-light"><div class="detail-kicker">{data.category} · {dateLabel} · {data.readingTime}</div><h1>{data.title}</h1><p class="journal-excerpt">{data.excerpt}</p></header>
+  <figure class="journal-cover section-dark"><img src={data.coverImage} alt={data.coverAlt} /></figure>
+  <section class="journal-body section-light"><div class="journal-body-grid"><aside class="journal-aside"><span class="section-kicker">[ Field note ]</span>{relatedFilm && <a href={`/films/${relatedFilm.id}`}>Part of {relatedFilm.data.title} <span aria-hidden="true">↗</span></a>}</aside><div class="rich-copy journal-copy"><Content /></div></div></section>
+  {(relatedFilm || nextEntry) && <section class="related-section section-light"><div class="section-kicker">[ Keep wandering ]</div><div class="related-grid">{relatedFilm && <RelatedCard href={`/films/${relatedFilm.id}`} eyebrow="Related film" title={relatedFilm.data.title} description={relatedFilm.data.logline} image={relatedFilm.data.heroImage} />}{nextEntry && <RelatedCard href={`/journal/${nextEntry.id}`} eyebrow={`${nextEntry.data.category} · ${nextEntry.data.readingTime}`} title={nextEntry.data.title} description={nextEntry.data.excerpt} image={nextEntry.data.coverImage} />}</div></section>}
+  <nav class="detail-next section-dark" aria-label="Journal navigation"><span>Keep wandering</span><a href="/journal">Back to all notes <span aria-hidden="true">↗</span></a></nav>
 </article>

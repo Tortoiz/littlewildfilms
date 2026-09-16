@@ -7,22 +7,62 @@ interface Props {
   title?: string;
   description?: string;
   dark?: boolean;
+  ogImage?: string;
+  type?: "website" | "article" | "video.other";
+  canonical?: string;
+  publishedTime?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = "Little Wild Films — Independent Cinema",
   description = "Little Wild Films — independent cinema for an almost-real world.",
   dark = true,
+  ogImage = "/manus-storage/hero-film-still_04dfca7c.jpg",
+  type = "website",
+  canonical,
+  publishedTime,
+  structuredData,
 } = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || "https://littlewildfilms.com";
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(ogImage, siteUrl).toString();
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Little Wild Films",
+  url: siteUrl,
+  logo: new URL("/favicon.png", siteUrl).toString(),
+  description,
+};
+const jsonLd = structuredData || defaultStructuredData;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101310" />
+    <meta name="theme-color" content={dark ? "#101310" : "#f3ecdf"} />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta property="og:site_name" content="Little Wild Films" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="Little Wild Films cinematic landscape" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   </head>
   <body class:list={{ "page-shell": true, "page-dark": dark }}>
     <SiteNav />

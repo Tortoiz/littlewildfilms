@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  image?: string;
+}
+const { href, eyebrow, title, description, image } = Astro.props;
+---
+<a class="related-card" href={href}>
+  {image && <div class="related-card-image" style={`background-image: url('${image}')`} aria-hidden="true"></div>}
+  <div class="related-card-copy">
+    <span>{eyebrow}</span>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <b aria-hidden="true">↗</b>
+  </div>
+</a>

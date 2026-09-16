@@ -5,15 +5,27 @@ import FilmDetail from "../../components/FilmDetail.astro";
 
 export async function getStaticPaths() {
   const films = await getCollection("films");
+  const sorted = [...films].sort((a, b) => b.data.year - a.data.year);
   return Promise.all(films.map(async (entry) => {
     const { Content } = await render(entry);
-    return { params: { slug: entry.id }, props: { entry, Content } };
+    const currentIndex = sorted.findIndex((film) => film.id === entry.id);
+    const nextEntry = sorted.length > 1 ? sorted[(currentIndex + 1) % sorted.length] : undefined;
+    return { params: { slug: entry.id }, props: { entry, Content, nextEntry } };
   }));
 }
 
-const { entry, Content } = Astro.props;
+const { entry, Content, nextEntry } = Astro.props;
 const description = entry.data.seoDescription ?? entry.data.logline;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Movie",
+  name: entry.data.title,
+  description,
+  dateCreated: String(entry.data.year),
+  image: entry.data.heroImage,
+  productionCompany: { "@type": "Organization", name: "Little Wild Films" },
+};
 ---
-<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description}>
-  <FilmDetail entry={entry} Content={Content} />
+<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} type="video.other" ogImage={entry.data.heroImage} structuredData={structuredData}>
+  <FilmDetail entry={entry} Content={Content} nextEntry={nextEntry} />
 </BaseLayout>
