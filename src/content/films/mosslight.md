@@ -19,6 +19,12 @@ gallery:
   - src: /manus-storage/film-card-still_16d5ff5a.jpg
     alt: A mossy forest study at blue hour.
     caption: First world-building pass.
+  - src: /manus-storage/hero-film-still_04dfca7c.jpg
+    alt: A forest path carrying a single amber light.
+    caption: Memory and light study.
+  - src: /manus-storage/film-card-still_16d5ff5a.jpg
+    alt: A distant valley glimpsed through the moss and trees.
+    caption: The forest remembers.
 relatedPosts:
   - teaching-a-machine-to-notice
 seoDescription: Mosslight is an AI-assisted visual experiment by Little Wild Films.

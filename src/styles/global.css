@@ -412,3 +412,11 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
   .lightbox-next { right: 8px; }
   .lightbox-close { top: 12px; right: 12px; }
 }
+
+
+/* Trailer playback and mobile gallery gestures */
+.trailer-section { padding: 11vh 8vw 13vh; }
+.trailer-frame { width: min(100%, 1100px); margin: 7vh auto 0; aspect-ratio: 16 / 9; overflow: hidden; background: #070907; }
+.trailer-frame iframe, .trailer-frame video { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; }
+.lightbox img { touch-action: none; transition: transform .18s ease-out; will-change: transform; }
+@media (max-width: 800px) { .trailer-section { padding: 10vh 7vw 11vh; } .trailer-frame { margin-top: 5vh; } }

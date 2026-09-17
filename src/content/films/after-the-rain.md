@@ -19,6 +19,12 @@ gallery:
   - src: /manus-storage/hero-film-still_04dfca7c.jpg
     alt: A landscape holding the last light after rain.
     caption: Location and weather study.
+  - src: /manus-storage/film-card-still_16d5ff5a.jpg
+    alt: A rain-darkened valley under a clearing sky.
+    caption: Atmosphere reference.
+  - src: /manus-storage/hero-film-still_04dfca7c.jpg
+    alt: Distant hills emerging from the weather.
+    caption: Transition frame.
 relatedPosts:
   - the-weather-between-scenes
 seoDescription: After the Rain is a live-action short coming soon from Little Wild Films.

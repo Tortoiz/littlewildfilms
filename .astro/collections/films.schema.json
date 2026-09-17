@@ -56,14 +56,17 @@
       "minLength": 1
     },
     "trailerUrl": {
-      "anyOf": [
-        {
-          "type": "string",
-          "format": "uri"
-        },
-        {
-          "type": "null"
-        }
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "trailerType": {
+      "default": "embed",
+      "type": "string",
+      "enum": [
+        "embed",
+        "video"
       ]
     },
     "credits": {

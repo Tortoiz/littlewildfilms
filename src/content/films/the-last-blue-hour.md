@@ -9,7 +9,8 @@ logline: A girl walks the shoreline collecting the last blue light before night 
 heroImage: /manus-storage/film-card-still_16d5ff5a.jpg
 heroAlt: A quiet blue-hour landscape with a warm light in the distance.
 posterImage: /manus-storage/film-card-still_16d5ff5a.jpg
-trailerUrl: null
+trailerUrl: /manus-storage/the-last-blue-hour-preview_f63d2d09.mp4
+trailerType: video
 credits:
   - role: Written and directed by
     name: Little Wild Films
@@ -19,6 +20,12 @@ gallery:
   - src: /manus-storage/film-card-still_16d5ff5a.jpg
     alt: A blue landscape after rain.
     caption: The last light study.
+  - src: /manus-storage/hero-film-still_04dfca7c.jpg
+    alt: A small warm light against the final blue of evening.
+    caption: Shoreline light continuity.
+  - src: /manus-storage/film-card-still_16d5ff5a.jpg
+    alt: A quiet path disappearing into a blue-hour valley.
+    caption: Closing frame study.
 relatedPosts:
   - painting-with-the-last-light
 seoDescription: The Last Blue Hour is an animated short from Little Wild Films.

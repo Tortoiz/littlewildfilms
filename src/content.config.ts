@@ -2,7 +2,7 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 const imageRef = z.string().min(1, "Add a web-ready image path or storage path.");
-const linkRef = z.string().url().optional().nullable();
+const linkRef = z.string().refine((value) => value.startsWith("/") || /^https?:\/\//.test(value), "Use an absolute URL or an internal storage path.").optional().nullable();
 
 const films = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/films" }),
@@ -18,6 +18,7 @@ const films = defineCollection({
     heroAlt: z.string(),
     posterImage: imageRef.optional(),
     trailerUrl: linkRef,
+    trailerType: z.enum(["embed", "video"]).default("embed"),
     credits: z.array(z.object({ role: z.string(), name: z.string() })).default([]),
     gallery: z.array(z.object({ src: imageRef, alt: z.string(), caption: z.string().optional() })).default([]),
     relatedPosts: z.array(z.string()).default([]),

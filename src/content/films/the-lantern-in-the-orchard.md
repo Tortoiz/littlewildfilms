@@ -19,6 +19,12 @@ gallery:
   - src: /manus-storage/hero-film-still_04dfca7c.jpg
     alt: A distant amber light resting on a mossy path.
     caption: First atmosphere frame.
+  - src: /manus-storage/film-card-still_16d5ff5a.jpg
+    alt: A blue mountain valley opening beyond the orchard.
+    caption: Worldbuilding and distance study.
+  - src: /manus-storage/hero-film-still_04dfca7c.jpg
+    alt: A warm point of light carried through the evening landscape.
+    caption: Lantern continuity frame.
 relatedPosts:
   - building-a-forest-that-feels-remembered
 seoDescription: The Lantern in the Orchard is an animated short in development by Little Wild Films.
