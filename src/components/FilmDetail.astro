@@ -20,35 +20,38 @@ const hasTrailer = Boolean(data.trailerUrl);
   <header class="detail-hero section-dark"><div class="detail-hero-image" style={`background-image: url('${data.heroImage}')`} role="img" aria-label={data.heroAlt}></div><div class="detail-hero-scrim"></div><div class="detail-hero-copy"><div class="detail-kicker">{data.category} · {data.status}</div><h1>{data.title}</h1><p class="detail-logline">{data.logline}</p></div><div class="detail-meta">{data.format} · {data.year}</div></header>
   <section class="detail-intro section-light"><div class="section-kicker">[ Project note ]</div><div class="detail-intro-grid"><p class="detail-lead">{data.logline}</p><div class="detail-prose rich-copy"><Content /></div></div></section>
   {hasTrailer && <section class="trailer-section section-dark" aria-label={`${data.title} preview`}><div class="section-kicker">[ Watch a preview ]</div><div class="trailer-frame">{data.trailerType === "video" ? <video controls playsinline preload="metadata" poster={data.posterImage || data.heroImage}><source src={data.trailerUrl} /></video> : <iframe src={data.trailerUrl} title={`${data.title} trailer`} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>}</div></section>}
-  {data.gallery.length > 0 && <section class="detail-gallery section-dark" aria-label={`${data.title} stills`}><div class="section-kicker">[ Visual development ]</div><div class="gallery-grid">{data.gallery.map((image, index) => <figure class:list={{ "gallery-frame": true, "gallery-frame-wide": index === 0 }}><button class="gallery-trigger" type="button" data-gallery-open={index} aria-label={`Open still ${index + 1}: ${image.alt}`}><img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} /><span class="gallery-zoom" aria-hidden="true">＋</span></button>{image.caption && <figcaption>{image.caption}</figcaption>}</figure>)}</div><dialog class="lightbox" id={galleryId} aria-label={`${data.title} image gallery`}><div class="lightbox-inner"><button class="lightbox-close" type="button" data-gallery-close aria-label="Close image gallery">×</button><button class="lightbox-arrow lightbox-prev" type="button" data-gallery-prev aria-label="Previous still">←</button><figure><img data-gallery-image src={data.gallery[0].src} alt={data.gallery[0].alt} /><figcaption data-gallery-caption>{data.gallery[0].caption || data.gallery[0].alt}</figcaption></figure><button class="lightbox-arrow lightbox-next" type="button" data-gallery-next aria-label="Next still">→</button></div></dialog></section>}
+  {data.gallery.length > 0 && <section class="detail-gallery section-dark" aria-label={`${data.title} stills`}><div class="section-kicker">[ Visual development ]</div><div class="gallery-grid">{data.gallery.map((item, index) => <figure class:list={{ "gallery-frame": true, "gallery-frame-wide": index === 0 }}><button class="gallery-trigger" type="button" data-gallery-open={index} aria-label={`Open still ${index + 1}: ${item.alt}`}><img src={item.src} alt={item.alt} loading={index === 0 ? "eager" : "lazy"} /><span class="gallery-zoom" aria-hidden="true">＋</span></button>{item.caption && <figcaption>{item.caption}</figcaption>}</figure>)}</div><dialog class="lightbox" id={galleryId} aria-label={`${data.title} image gallery`}><div class="lightbox-inner"><button class="lightbox-close" type="button" data-gallery-close aria-label="Close image gallery">×</button><button class="lightbox-arrow lightbox-prev" type="button" data-gallery-prev aria-label="Previous still">←</button><figure><img data-gallery-image src={data.gallery[0].src} alt={data.gallery[0].alt} /><figcaption data-gallery-caption>{data.gallery[0].caption || data.gallery[0].alt}</figcaption></figure><button class="lightbox-arrow lightbox-next" type="button" data-gallery-next aria-label="Next still">→</button><div class="lightbox-hint" aria-hidden="true"><span class="hint-hand">↔</span> Swipe to explore</div><div class="lightbox-thumbs" role="tablist" aria-label="Choose a film still">{data.gallery.map((item, index) => <button type="button" role="tab" data-gallery-thumb={index} aria-label={`Show still ${index + 1}: ${item.alt}`} aria-selected={index === 0}><img src={item.src} alt="" /></button>)}</div></div></dialog></section>}
+  <section class="film-share section-light" aria-labelledby={`share-${entry.id}`}><div class="section-kicker">[ Pass it on ]</div><div class="film-share-row"><h2 id={`share-${entry.id}`}>Share the frame.</h2><div class="share-actions"><button type="button" class="share-native" data-native-share>Share</button><a href="#" data-share="x" target="_blank" rel="noreferrer">X</a><a href="#" data-share="whatsapp" target="_blank" rel="noreferrer">WhatsApp</a><button type="button" data-copy-share>Copy link</button><span class="copy-status" aria-live="polite"></span></div></div></section>
   <section class="credits section-light"><div class="section-kicker">[ Credits ]</div><div class="credits-grid">{data.credits.map((credit) => <div class="credit-row"><span>{credit.role}</span><strong>{credit.name}</strong></div>)}</div></section>
   {nextEntry && <section class="related-section section-light"><div class="section-kicker">[ Next film ]</div><RelatedCard href={`/films/${nextEntry.id}`} eyebrow={`${nextEntry.data.category} · ${nextEntry.data.year}`} title={nextEntry.data.title} description={nextEntry.data.logline} image={nextEntry.data.heroImage} /></section>}
   <nav class="detail-next section-dark" aria-label="Project navigation"><span>Next frame</span><a href="/films">Back to all films <span aria-hidden="true">↗</span></a></nav>
 </article>
 
-<script define:vars={{ galleryId, gallery: data.gallery }}>
+<script define:vars={{ galleryId, gallery: data.gallery, filmTitle: data.title }}>
   const dialog = document.getElementById(galleryId);
   const image = dialog?.querySelector("[data-gallery-image]");
   const caption = dialog?.querySelector("[data-gallery-caption]");
   const triggers = [...document.querySelectorAll("[data-gallery-open]")];
-  let activeIndex = 0;
-  let startX = 0;
-  let startY = 0;
-  let pinchStartDistance = 0;
-  let scale = 1;
-  const update = (index) => {
-    activeIndex = (index + gallery.length) % gallery.length;
-    if (image) { image.src = gallery[activeIndex].src; image.alt = gallery[activeIndex].alt; image.style.transform = `scale(${scale})`; }
-    if (caption) caption.textContent = gallery[activeIndex].caption || gallery[activeIndex].alt;
-  };
+  const thumbs = [...document.querySelectorAll("[data-gallery-thumb]")];
+  let activeIndex = 0; let startX = 0; let startY = 0; let pinchStartDistance = 0; let scale = 1;
   const distance = (touches) => Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
-  triggers.forEach((trigger) => trigger.addEventListener("click", () => { scale = 1; update(Number(trigger.dataset.galleryOpen)); dialog?.showModal(); }));
+  const update = (index) => { activeIndex = (index + gallery.length) % gallery.length; scale = 1; if (image) { image.src = gallery[activeIndex].src; image.alt = gallery[activeIndex].alt; image.style.transform = "scale(1)"; } if (caption) caption.textContent = gallery[activeIndex].caption || gallery[activeIndex].alt; thumbs.forEach((thumb, i) => { thumb.setAttribute("aria-selected", String(i === activeIndex)); }); };
+  triggers.forEach((trigger) => trigger.addEventListener("click", () => { update(Number(trigger.dataset.galleryOpen)); dialog?.showModal(); }));
+  thumbs.forEach((thumb) => thumb.addEventListener("click", () => update(Number(thumb.dataset.galleryThumb))));
   dialog?.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog.close());
   dialog?.querySelector("[data-gallery-prev]")?.addEventListener("click", () => update(activeIndex - 1));
   dialog?.querySelector("[data-gallery-next]")?.addEventListener("click", () => update(activeIndex + 1));
   dialog?.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
   dialog?.addEventListener("keydown", (event) => { if (event.key === "ArrowLeft") update(activeIndex - 1); if (event.key === "ArrowRight") update(activeIndex + 1); if (event.key === "Escape") dialog.close(); });
   dialog?.addEventListener("touchstart", (event) => { if (event.touches.length === 2) pinchStartDistance = distance(event.touches); else { startX = event.touches[0].clientX; startY = event.touches[0].clientY; } }, { passive: true });
-  dialog?.addEventListener("touchmove", (event) => { if (event.touches.length === 2 && image) { const ratio = distance(event.touches) / pinchStartDistance; scale = Math.min(3, Math.max(1, ratio)); image.style.transform = `scale(${scale})`; } }, { passive: true });
+  dialog?.addEventListener("touchmove", (event) => { if (event.touches.length === 2 && image) { scale = Math.min(3, Math.max(1, distance(event.touches) / pinchStartDistance)); image.style.transform = `scale(${scale})`; } }, { passive: true });
   dialog?.addEventListener("touchend", (event) => { if (scale > 1 || !event.changedTouches[0]) return; const deltaX = event.changedTouches[0].clientX - startX; const deltaY = event.changedTouches[0].clientY - startY; if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) update(deltaX < 0 ? activeIndex + 1 : activeIndex - 1); }, { passive: true });
+  const pageUrl = () => window.location.href;
+  const shareText = () => `${filmTitle} — Little Wild Films`;
+  document.querySelectorAll("[data-share]").forEach((link) => { const kind = link.dataset.share; link.href = kind === "whatsapp" ? `https://wa.me/?text=${encodeURIComponent(`${shareText()} ${pageUrl()}`)}` : `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText())}&url=${encodeURIComponent(pageUrl())}`; });
+  const nativeShare = document.querySelector("[data-native-share]");
+  if (nativeShare && !navigator.share) nativeShare.setAttribute("hidden", "true");
+  nativeShare?.addEventListener("click", () => navigator.share?.({ title: shareText(), text: shareText(), url: pageUrl() }));
+  const copyStatus = document.querySelector(".copy-status");
+  document.querySelector("[data-copy-share]")?.addEventListener("click", async () => { try { await navigator.clipboard.writeText(pageUrl()); if (copyStatus) copyStatus.textContent = "Copied"; setTimeout(() => { if (copyStatus) copyStatus.textContent = ""; }, 1800); } catch { if (copyStatus) copyStatus.textContent = "Copy unavailable"; } });
 </script>

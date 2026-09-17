@@ -420,3 +420,29 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 .trailer-frame iframe, .trailer-frame video { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; }
 .lightbox img { touch-action: none; transition: transform .18s ease-out; will-change: transform; }
 @media (max-width: 800px) { .trailer-section { padding: 10vh 7vw 11vh; } .trailer-frame { margin-top: 5vh; } }
+
+
+/* Thumbnail navigation, sharing, and mobile lightbox guidance */
+.lightbox-thumbs { position: absolute; bottom: 16px; left: 50%; display: flex; max-width: calc(100% - 180px); gap: 8px; padding: 7px; overflow-x: auto; border: 1px solid rgba(243,236,223,.2); background: rgba(10,13,11,.78); transform: translateX(-50%); scrollbar-width: thin; }
+.lightbox-thumbs button { flex: 0 0 58px; width: 58px; height: 42px; padding: 0; overflow: hidden; border: 1px solid transparent; background: transparent; opacity: .55; transition: opacity .2s ease, border-color .2s ease, transform .2s ease; }
+.lightbox-thumbs button:hover, .lightbox-thumbs button[aria-selected="true"] { border-color: var(--gold); opacity: 1; transform: translateY(-2px); }
+.lightbox-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.lightbox-hint { position: absolute; bottom: 78px; left: 50%; color: var(--bone-muted); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; opacity: 0; transform: translate(-50%, 7px); pointer-events: none; }
+.hint-hand { display: inline-block; margin-right: 7px; color: var(--gold); font-size: 16px; animation: nudge-swipe 1.5s ease-in-out infinite; }
+.film-share { padding: 10vh 8vw 11vh; }
+.film-share-row { display: flex; align-items: center; justify-content: space-between; gap: 40px; margin-top: 7vh; }
+.film-share h2 { color: var(--moss); font-family: 'Instrument Serif', serif; font-size: clamp(3.2rem, 6vw, 6rem); font-weight: 400; line-height: .9; }
+.share-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 9px; }
+.share-actions a, .share-actions button { padding: 11px 15px; border: 1px solid var(--line-light); background: transparent; color: var(--moss); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; transition: color .2s ease, background .2s ease, border-color .2s ease; }
+.share-actions a:hover, .share-actions button:hover { border-color: var(--gold); background: var(--gold); color: var(--night); }
+.share-actions [hidden] { display: none; }
+.copy-status { min-width: 68px; color: var(--moss); font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; }
+@keyframes nudge-swipe { 0%, 100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+@media (max-width: 800px) {
+  .lightbox-thumbs { bottom: 12px; max-width: calc(100% - 32px); }
+  .lightbox-hint { bottom: 74px; opacity: .95; }
+  .film-share { padding: 9vh 7vw 10vh; }
+  .film-share-row { display: grid; gap: 30px; margin-top: 6vh; }
+  .share-actions { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .hint-hand { animation: none; } }
