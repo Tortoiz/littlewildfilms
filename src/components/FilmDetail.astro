@@ -19,26 +19,45 @@ interface FilmEntry {
   };
 }
 
-interface Props {
-  entry: FilmEntry;
-  Content: any;
-  nextEntry?: FilmEntry;
-}
-
+interface Props { entry: FilmEntry; Content: any; nextEntry?: FilmEntry; }
 const { entry, Content, nextEntry } = Astro.props;
 const { data } = entry;
+const galleryId = `film-gallery-${entry.id.replace(/[^a-z0-9-]/gi, "-")}`;
 ---
 <article class="detail-page film-detail">
   <nav class="breadcrumbs breadcrumbs-dark" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/films">Films</a><span>/</span><span aria-current="page">{data.title}</span></nav>
-  <header class="detail-hero section-dark">
-    <div class="detail-hero-image" style={`background-image: url('${data.heroImage}')`} role="img" aria-label={data.heroAlt}></div>
-    <div class="detail-hero-scrim"></div>
-    <div class="detail-hero-copy"><div class="detail-kicker">{data.category} · {data.status}</div><h1>{data.title}</h1><p class="detail-logline">{data.logline}</p></div>
-    <div class="detail-meta">{data.format} · {data.year}</div>
-  </header>
+  <header class="detail-hero section-dark"><div class="detail-hero-image" style={`background-image: url('${data.heroImage}')`} role="img" aria-label={data.heroAlt}></div><div class="detail-hero-scrim"></div><div class="detail-hero-copy"><div class="detail-kicker">{data.category} · {data.status}</div><h1>{data.title}</h1><p class="detail-logline">{data.logline}</p></div><div class="detail-meta">{data.format} · {data.year}</div></header>
   <section class="detail-intro section-light"><div class="section-kicker">[ Project note ]</div><div class="detail-intro-grid"><p class="detail-lead">{data.logline}</p><div class="detail-prose rich-copy"><Content /></div></div></section>
-  {data.gallery.length > 0 && <section class="detail-gallery section-dark" aria-label={`${data.title} stills`}><div class="section-kicker">[ Visual development ]</div><div class="gallery-grid">{data.gallery.map((image, index) => <figure class:list={{ "gallery-frame": true, "gallery-frame-wide": index === 0 }}><img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} />{image.caption && <figcaption>{image.caption}</figcaption>}</figure>)}</div></section>}
+  {data.gallery.length > 0 && <section class="detail-gallery section-dark" aria-label={`${data.title} stills`}><div class="section-kicker">[ Visual development ]</div><div class="gallery-grid">{data.gallery.map((image, index) => <figure class:list={{ "gallery-frame": true, "gallery-frame-wide": index === 0 }}><button class="gallery-trigger" type="button" data-gallery-open={index} aria-label={`Open still ${index + 1}: ${image.alt}`}><img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} /><span class="gallery-zoom" aria-hidden="true">＋</span></button>{image.caption && <figcaption>{image.caption}</figcaption>}</figure>)}</div><dialog class="lightbox" id={galleryId} aria-label={`${data.title} image gallery`}><div class="lightbox-inner"><button class="lightbox-close" type="button" data-gallery-close aria-label="Close image gallery">×</button><button class="lightbox-arrow lightbox-prev" type="button" data-gallery-prev aria-label="Previous still">←</button><figure><img data-gallery-image src={data.gallery[0].src} alt={data.gallery[0].alt} /><figcaption data-gallery-caption>{data.gallery[0].caption || data.gallery[0].alt}</figcaption></figure><button class="lightbox-arrow lightbox-next" type="button" data-gallery-next aria-label="Next still">→</button></div></dialog></section>}
   <section class="credits section-light"><div class="section-kicker">[ Credits ]</div><div class="credits-grid">{data.credits.map((credit) => <div class="credit-row"><span>{credit.role}</span><strong>{credit.name}</strong></div>)}</div></section>
   {nextEntry && <section class="related-section section-light"><div class="section-kicker">[ Next film ]</div><RelatedCard href={`/films/${nextEntry.id}`} eyebrow={`${nextEntry.data.category} · ${nextEntry.data.year}`} title={nextEntry.data.title} description={nextEntry.data.logline} image={nextEntry.data.heroImage} /></section>}
   <nav class="detail-next section-dark" aria-label="Project navigation"><span>Next frame</span><a href="/films">Back to all films <span aria-hidden="true">↗</span></a></nav>
 </article>
+
+<script define:vars={{ galleryId, gallery: data.gallery }}>
+  const dialog = document.getElementById(galleryId);
+  const image = dialog?.querySelector("[data-gallery-image]");
+  const caption = dialog?.querySelector("[data-gallery-caption]");
+  const triggers = [...document.querySelectorAll("[data-gallery-open]")];
+  let activeIndex = 0;
+  const update = (index) => {
+    activeIndex = (index + gallery.length) % gallery.length;
+    if (image) {
+      image.src = gallery[activeIndex].src;
+      image.alt = gallery[activeIndex].alt;
+    }
+    if (caption) caption.textContent = gallery[activeIndex].caption || gallery[activeIndex].alt;
+  };
+  triggers.forEach((trigger) => trigger.addEventListener("click", () => {
+    update(Number(trigger.dataset.galleryOpen));
+    dialog?.showModal();
+  }));
+  dialog?.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog.close());
+  dialog?.querySelector("[data-gallery-prev]")?.addEventListener("click", () => update(activeIndex - 1));
+  dialog?.querySelector("[data-gallery-next]")?.addEventListener("click", () => update(activeIndex + 1));
+  dialog?.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+  dialog?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") update(activeIndex - 1);
+    if (event.key === "ArrowRight") update(activeIndex + 1);
+  });
+</script>
