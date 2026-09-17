@@ -314,3 +314,12 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
   .related-card-copy { padding: 18px; }
   .related-card-copy h3 { font-size: 2.2rem; }
 }
+
+
+/* Cross-page navigation states */
+.desktop-nav a.is-current, .nav-contact.is-current { color: var(--gold); }
+.mobile-nav a.is-current { color: var(--gold); }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 18px; }
+.footer-nav a { color: var(--bone-muted); font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; transition: color .2s ease; }
+.footer-nav a:hover { color: var(--gold); }
+@media (max-width: 800px) { .footer-nav { gap: 12px; } }
