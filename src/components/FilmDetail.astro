@@ -29,6 +29,7 @@ const { entry, Content, nextEntry } = Astro.props;
 const { data } = entry;
 ---
 <article class="detail-page film-detail">
+  <nav class="breadcrumbs breadcrumbs-dark" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/films">Films</a><span>/</span><span aria-current="page">{data.title}</span></nav>
   <header class="detail-hero section-dark">
     <div class="detail-hero-image" style={`background-image: url('${data.heroImage}')`} role="img" aria-label={data.heroAlt}></div>
     <div class="detail-hero-scrim"></div>

@@ -8,6 +8,7 @@ const { data } = entry;
 const dateLabel = data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 ---
 <article class="detail-page journal-detail">
+  <nav class="breadcrumbs breadcrumbs-light" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/journal">Journal</a><span>/</span><span aria-current="page">{data.title}</span></nav>
   <header class="journal-hero section-light"><div class="detail-kicker">{data.category} · {dateLabel} · {data.readingTime}</div><h1>{data.title}</h1><p class="journal-excerpt">{data.excerpt}</p></header>
   <figure class="journal-cover section-dark"><img src={data.coverImage} alt={data.coverAlt} /></figure>
   <section class="journal-body section-light"><div class="journal-body-grid"><aside class="journal-aside"><span class="section-kicker">[ Field note ]</span>{relatedFilm && <a href={`/films/${relatedFilm.id}`}>Part of {relatedFilm.data.title} <span aria-hidden="true">↗</span></a>}</aside><div class="rich-copy journal-copy"><Content /></div></div></section>

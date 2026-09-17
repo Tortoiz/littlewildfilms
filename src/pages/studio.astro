@@ -1,11 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const services = [
+  ["01", "Original films", "Shorts, pilots, and small-scale worlds made with a director’s point of view."],
+  ["02", "Visual development", "Character, environment, mood, and story exploration for projects still finding their shape."],
+  ["03", "AI-assisted direction", "A thoughtful image-making process where new tools serve the feeling, not the other way around."],
+  ["04", "Selective collaborations", "Music videos, brand worlds, and commissions with enough room for a strange idea to breathe."],
+];
 ---
-<BaseLayout title="Studio — Little Wild Films" description="The studio point of view behind Little Wild Films." dark={false}>
-  <main class="inner-page section-light">
-    <div class="inner-page-kicker">[ 03 — The studio ]</div>
-    <h1>A small studio<br /><em>with a wild frame.</em></h1>
-    <p class="inner-page-intro">The studio page will hold the longer point of view, creative process, and collaboration context.</p>
-    <a class="dark-link" href="/">Return home <span aria-hidden="true">↗</span></a>
+<BaseLayout title="Studio — Little Wild Films" description="The point of view, process, and services behind Little Wild Films." dark={false}>
+  <main class="studio-page section-light">
+    <section class="studio-hero">
+      <div class="inner-page-kicker">[ 03 — The studio ]</div>
+      <h1>A studio<br /><em>with a wild frame.</em></h1>
+      <p class="studio-hero-intro">Little Wild Films is an independent production house from India making intimate animated films, live-action studies, and AI-assisted worlds for strange times.</p>
+      <a class="dark-link" href="/">Back to home <span aria-hidden="true">↗</span></a>
+    </section>
+    <section class="studio-belief">
+      <div class="section-kicker">[ The point of view ]</div>
+      <div class="studio-belief-grid"><h2>Technology expands<br /><em>the frame.</em></h2><div class="rich-copy"><p>Little Wild Films began with a simple instinct: make the kind of images that stay with you after the screen goes dark.</p><p>We use animation, live action, generative tools, and old-fashioned patience to build films with a strong sense of place. The work can be fantastical or familiar, but it should always feel human at the center.</p><p class="studio-pullquote">AI is part of the process — not the point. The point is the feeling a film leaves behind.</p></div></div>
+    </section>
+    <section class="studio-services"><div class="section-kicker">[ What we make ]</div><div class="service-list">{services.map(([number, title, copy]) => <article class="service-row"><span>{number}</span><h2>{title}</h2><p>{copy}</p></article>)}</div></section>
+    <section class="studio-approach section-dark"><div class="section-kicker">[ How we work ]</div><div class="studio-approach-grid"><h2>Small team.<br /><em>Large possibility.</em></h2><p>Every project starts with a conversation, a reference, or a question that refuses to leave. We keep the team lean, the feedback honest, and the final image open to surprise.</p></div><a class="text-link" href="/contact">Talk to the studio <span aria-hidden="true">↗</span></a></section>
   </main>
 </BaseLayout>
