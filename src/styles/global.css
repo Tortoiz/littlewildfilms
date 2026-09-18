@@ -446,3 +446,37 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
   .share-actions { justify-content: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { .hint-hand { animation: none; } }
+
+
+/* Cloudflare-ready image shell and high-contrast editorial navigation */
+.site-nav { background: linear-gradient(180deg, rgba(8,11,9,.78), rgba(8,11,9,.12)); border-bottom: 1px solid rgba(241,235,221,.12); backdrop-filter: blur(12px); }
+.page-shell:not(.page-dark) .site-nav { background: rgba(241,235,221,.94); border-bottom-color: rgba(16,19,16,.12); box-shadow: 0 8px 28px rgba(16,19,16,.06); }
+.desktop-nav a, .nav-contact { color: var(--bone); opacity: .94; text-shadow: 0 1px 12px rgba(0,0,0,.28); }
+.page-shell:not(.page-dark) .desktop-nav a, .page-shell:not(.page-dark) .nav-contact { color: var(--night); text-shadow: none; }
+.desktop-nav a:hover, .nav-contact:hover, .desktop-nav a.is-current, .nav-contact.is-current { color: var(--gold); opacity: 1; }
+.studio-hero { position: relative; min-height: 76vh; overflow: hidden; background-image: linear-gradient(90deg, rgba(8,11,9,.96) 0%, rgba(8,11,9,.72) 42%, rgba(8,11,9,.2) 100%), linear-gradient(0deg, rgba(8,11,9,.8), transparent 65%), url('/assets/hero-film-still.jpg'); background-size: cover; background-position: center; }
+.studio-hero h1, .journal-archive-hero h1, .journal-hero h1 { color: var(--bone); }
+.studio-hero h1 em, .journal-archive-hero h1 em, .journal-hero h1 em { color: var(--gold); }
+.studio-hero .inner-page-kicker, .journal-archive-hero .inner-page-kicker, .journal-hero .detail-kicker { color: var(--gold); }
+.studio-hero-intro, .journal-archive-hero > p, .journal-hero .journal-excerpt { color: var(--bone-muted); }
+.journal-archive-hero { position: relative; min-height: 70vh; margin: 0 -8vw 13vh; padding: 20vh 8vw 12vh; overflow: hidden; background-image: linear-gradient(90deg, rgba(8,11,9,.96) 0%, rgba(8,11,9,.72) 48%, rgba(8,11,9,.26) 100%), linear-gradient(0deg, rgba(8,11,9,.72), transparent 70%), url('/assets/mosslight-forest-gate.jpg'); background-size: cover; background-position: center; }
+.journal-archive-hero > p { color: var(--bone-muted); }
+.journal-hero { position: relative; overflow: hidden; background-image: linear-gradient(90deg, rgba(8,11,9,.94), rgba(8,11,9,.48)), url('/assets/mosslight-water-memory.jpg'); background-size: cover; background-position: center; }
+.journal-hero .journal-excerpt { color: var(--bone-muted); }
+.page-shell:not(.page-dark) .mobile-nav { border-color: rgba(16,19,16,.2); background: rgba(241,235,221,.98); }
+.mobile-nav a { color: var(--bone); }
+.page-shell:not(.page-dark) .mobile-nav a { color: var(--night); }
+@media (max-width: 800px) {
+  .site-nav { padding: 17px 5vw; }
+  .studio-hero { min-height: 72vh; background-position: 62% center; }
+  .journal-archive-hero { min-height: 68vh; margin: 0 -7vw 9vh; padding: 17vh 7vw 10vh; background-position: 58% center; }
+  .journal-hero { background-position: 58% center; }
+}
+
+
+/* Final archive contrast correction */
+.journal-archive { padding-top: 0; }
+.journal-archive .journal-archive-hero h1 { color: var(--bone); }
+.journal-archive .journal-archive-hero h1 em { color: var(--gold); }
+.journal-archive .journal-archive-hero > p { color: var(--bone-muted); }
+@media (max-width: 800px) { .journal-archive { padding-top: 0; } }

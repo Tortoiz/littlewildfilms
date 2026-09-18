@@ -3,7 +3,7 @@ title: The weather between scenes
 date: 2026-08-28
 category: Studio notes
 excerpt: Why weather is not background in After the Rain — it is part of the edit.
-coverImage: /manus-storage/hero-film-still_04dfca7c.jpg
+coverImage: /assets/hero-film-still.jpg
 coverAlt: A cinematic mountain landscape after a storm.
 readingTime: 5 min read
 relatedFilm: after-the-rain

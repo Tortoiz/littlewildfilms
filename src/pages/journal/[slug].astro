@@ -20,6 +20,6 @@ const { entry, Content, relatedFilm, nextEntry } = Astro.props;
 const description = entry.data.seoDescription ?? entry.data.excerpt;
 const structuredData = { "@context": "https://schema.org", "@type": "Article", headline: entry.data.title, description, datePublished: entry.data.date.toISOString(), image: entry.data.coverImage, author: { "@type": "Organization", name: "Little Wild Films" }, publisher: { "@type": "Organization", name: "Little Wild Films" } };
 ---
-<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} dark={false} type="article" ogImage={entry.data.coverImage} publishedTime={entry.data.date.toISOString()} structuredData={structuredData}>
+<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} dark={true} type="article" ogImage={entry.data.coverImage} publishedTime={entry.data.date.toISOString()} structuredData={structuredData}>
   <JournalDetail entry={entry} Content={Content} relatedFilm={relatedFilm} nextEntry={nextEntry} />
 </BaseLayout>

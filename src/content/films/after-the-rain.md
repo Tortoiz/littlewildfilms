@@ -6,10 +6,10 @@ category: Live action
 status: Coming soon
 featured: false
 logline: A city becomes strange when the last light goes out.
-heroImage: /manus-storage/hero-film-still_04dfca7c.jpg
+heroImage: /assets/hero-film-still.jpg
 heroAlt: A moody cinematic landscape under a deep evening sky.
-shareImage: /manus-storage/after-rain-city_1d87a887.jpg
-posterImage: /manus-storage/hero-film-still_04dfca7c.jpg
+shareImage: /assets/after-rain-city.jpg
+posterImage: /assets/hero-film-still.jpg
 trailerUrl: null
 credits:
   - role: Directed by
@@ -17,13 +17,13 @@ credits:
   - role: Cinematography
     name: In-house development
 gallery:
-  - src: /manus-storage/after-rain-city_1d87a887.jpg
+  - src: /assets/after-rain-city.jpg
     alt: A rain-darkened hill-town street reflecting a sodium lamp.
     caption: Location and weather study.
-  - src: /manus-storage/after-rain-window_a4e13233.jpg
+  - src: /assets/after-rain-window.jpg
     alt: A figure watching the storm through a rain-streaked window.
     caption: Interior light study.
-  - src: /manus-storage/hero-film-still_04dfca7c.jpg
+  - src: /assets/hero-film-still.jpg
     alt: Distant hills emerging from the weather.
     caption: Transition frame.
 relatedPosts:

@@ -6,10 +6,10 @@ category: Animation
 status: In development
 featured: true
 logline: On the night the orchard forgets its seasons, a child follows one small lantern home.
-heroImage: /manus-storage/hero-film-still_04dfca7c.jpg
+heroImage: /assets/hero-film-still.jpg
 heroAlt: A warm lantern glowing beside a path through a blue-hour mountain valley.
-shareImage: /manus-storage/lantern-frame-orchard_7409b10e.jpg
-posterImage: /manus-storage/hero-film-still_04dfca7c.jpg
+shareImage: /assets/lantern-frame-orchard.jpg
+posterImage: /assets/hero-film-still.jpg
 trailerUrl: null
 credits:
   - role: Written and directed by
@@ -17,13 +17,13 @@ credits:
   - role: Visual development
     name: Little Wild Films
 gallery:
-  - src: /manus-storage/lantern-frame-orchard_7409b10e.jpg
+  - src: /assets/lantern-frame-orchard.jpg
     alt: A lantern glowing beneath flowering apple branches.
     caption: Orchard atmosphere frame.
-  - src: /manus-storage/lantern-frame-child_9d61f201.jpg
+  - src: /assets/lantern-frame-child.jpg
     alt: A child carrying a lantern through tall silver grass.
     caption: The walk home.
-  - src: /manus-storage/hero-film-still_04dfca7c.jpg
+  - src: /assets/hero-film-still.jpg
     alt: A warm point of light resting on a mossy path.
     caption: Lantern continuity frame.
 relatedPosts:

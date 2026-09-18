@@ -3,7 +3,7 @@ title: Teaching a machine to notice
 date: 2026-08-12
 category: Experiments
 excerpt: A field note on using AI image tools for questions, not answers, while building Mosslight.
-coverImage: /manus-storage/film-card-still_16d5ff5a.jpg
+coverImage: /assets/film-card-still.jpg
 coverAlt: A layered forest landscape used as a visual development study.
 readingTime: 6 min read
 relatedFilm: mosslight

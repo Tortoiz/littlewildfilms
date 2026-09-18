@@ -3,7 +3,7 @@ title: Painting with the last light
 date: 2026-09-10
 category: References
 excerpt: A few notes on using the final minutes of daylight as a character in The Last Blue Hour.
-coverImage: /manus-storage/film-card-still_16d5ff5a.jpg
+coverImage: /assets/film-card-still.jpg
 coverAlt: A blue-hour landscape with a small warm light.
 readingTime: 3 min read
 relatedFilm: the-last-blue-hour

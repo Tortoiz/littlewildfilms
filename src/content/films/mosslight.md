@@ -6,10 +6,10 @@ category: AI-assisted
 status: In development
 featured: false
 logline: A forest remembers the people who pass through it.
-heroImage: /manus-storage/film-card-still_16d5ff5a.jpg
+heroImage: /assets/film-card-still.jpg
 heroAlt: A mossy forest and distant mountain range at twilight.
-shareImage: /manus-storage/mosslight-forest-gate_0bb6d6e6.jpg
-posterImage: /manus-storage/film-card-still_16d5ff5a.jpg
+shareImage: /assets/mosslight-forest-gate.jpg
+posterImage: /assets/film-card-still.jpg
 trailerUrl: null
 credits:
   - role: Concept and direction
@@ -17,13 +17,13 @@ credits:
   - role: Generative image research
     name: Little Wild Films
 gallery:
-  - src: /manus-storage/mosslight-forest-gate_0bb6d6e6.jpg
+  - src: /assets/mosslight-forest-gate.jpg
     alt: An ancient moss-covered gate lit by remembered footsteps.
     caption: First world-building pass.
-  - src: /manus-storage/mosslight-water-memory_3710abca.jpg
+  - src: /assets/mosslight-water-memory.jpg
     alt: A forest pool reflecting a different season.
     caption: Memory and water study.
-  - src: /manus-storage/film-card-still_16d5ff5a.jpg
+  - src: /assets/film-card-still.jpg
     alt: A distant valley glimpsed through moss and trees.
     caption: The forest remembers.
 relatedPosts:

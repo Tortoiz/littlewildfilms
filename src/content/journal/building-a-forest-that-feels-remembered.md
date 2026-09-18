@@ -3,7 +3,7 @@ title: Building a forest that feels remembered
 date: 2026-09-16
 category: Process
 excerpt: Notes on making a forest feel like it existed before the camera arrived.
-coverImage: /manus-storage/hero-film-still_04dfca7c.jpg
+coverImage: /assets/hero-film-still.jpg
 coverAlt: A blue-hour valley with a single warm light on a winding path.
 readingTime: 4 min read
 relatedFilm: the-lantern-in-the-orchard

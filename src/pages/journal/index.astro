@@ -5,9 +5,9 @@ import JournalCard from "../../components/JournalCard.astro";
 
 const posts = (await getCollection("journal", ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title="Journal — Little Wild Films" description="Field notes, process, and experiments from Little Wild Films." dark={false}>
+<BaseLayout title="Journal — Little Wild Films" description="Field notes, process, and experiments from Little Wild Films." dark={true}>
   <main class="journal-archive section-light">
-    <header class="archive-header">
+    <header class="archive-header journal-archive-hero section-dark">
       <div class="inner-page-kicker">[ 02 — Field notes ]</div>
       <h1>Notes from<br /><em>the process.</em></h1>
       <p>A living notebook of film development, visual experiments, references, and the questions that stay with us between shots.</p>

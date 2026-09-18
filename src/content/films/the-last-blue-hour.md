@@ -6,11 +6,11 @@ category: Animation
 status: Released
 featured: false
 logline: A girl walks the shoreline collecting the last blue light before night arrives.
-heroImage: /manus-storage/film-card-still_16d5ff5a.jpg
+heroImage: /assets/film-card-still.jpg
 heroAlt: A quiet blue-hour landscape with a warm light in the distance.
-shareImage: /manus-storage/bluehour-shoreline_fff6a602.jpg
-posterImage: /manus-storage/film-card-still_16d5ff5a.jpg
-trailerUrl: /manus-storage/the-last-blue-hour-preview_f63d2d09.mp4
+shareImage: /assets/bluehour-shoreline.jpg
+posterImage: /assets/film-card-still.jpg
+trailerUrl: /assets/the-last-blue-hour-preview.mp4
 trailerType: video
 credits:
   - role: Written and directed by
@@ -18,13 +18,13 @@ credits:
   - role: Sound and score
     name: Field Notes Audio
 gallery:
-  - src: /manus-storage/bluehour-shoreline_fff6a602.jpg
+  - src: /assets/bluehour-shoreline.jpg
     alt: A girl collecting blue light in a glass jar beside the sea.
     caption: The last light study.
-  - src: /manus-storage/bluehour-tide_86f8cf90.jpg
+  - src: /assets/bluehour-tide.jpg
     alt: A warm lantern reflection moving across empty tide pools.
     caption: Shoreline light continuity.
-  - src: /manus-storage/film-card-still_16d5ff5a.jpg
+  - src: /assets/film-card-still.jpg
     alt: A quiet path disappearing into a blue-hour valley.
     caption: Closing frame study.
 relatedPosts:
