@@ -480,3 +480,9 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 .journal-archive .journal-archive-hero h1 em { color: var(--gold); }
 .journal-archive .journal-archive-hero > p { color: var(--bone-muted); }
 @media (max-width: 800px) { .journal-archive { padding-top: 0; } }
+
+
+/* Sticky cinematic navigation: integrated at load, glass after scroll */
+.site-nav { position: fixed; transition: background-color .28s ease, box-shadow .28s ease, border-color .28s ease, backdrop-filter .28s ease; }
+.site-nav[data-scrolled] { background: rgba(16,19,16,.78); border-bottom-color: rgba(241,235,221,.14); box-shadow: 0 10px 30px rgba(0,0,0,.18); backdrop-filter: blur(18px) saturate(120%); }
+.page-shell:not(.page-dark) .site-nav[data-scrolled] { background: rgba(241,235,221,.82); border-bottom-color: rgba(16,19,16,.14); box-shadow: 0 10px 30px rgba(16,19,16,.1); }

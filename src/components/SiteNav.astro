@@ -22,3 +22,10 @@ const navItems = [
     </nav>
   </details>
 </header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('.site-nav');
+  const updateNav = () => nav?.toggleAttribute('data-scrolled', window.scrollY > 24);
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+</script>
