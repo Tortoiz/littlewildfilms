@@ -16,6 +16,7 @@ const films = defineCollection({
     logline: z.string(),
     heroImage: imageRef,
     heroAlt: z.string(),
+    shareImage: imageRef.optional(),
     posterImage: imageRef.optional(),
     trailerUrl: linkRef,
     trailerType: z.enum(["embed", "video"]).default("embed"),

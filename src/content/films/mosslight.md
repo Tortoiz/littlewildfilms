@@ -8,6 +8,7 @@ featured: false
 logline: A forest remembers the people who pass through it.
 heroImage: /manus-storage/film-card-still_16d5ff5a.jpg
 heroAlt: A mossy forest and distant mountain range at twilight.
+shareImage: /manus-storage/mosslight-forest-gate_0bb6d6e6.jpg
 posterImage: /manus-storage/film-card-still_16d5ff5a.jpg
 trailerUrl: null
 credits:
@@ -16,14 +17,14 @@ credits:
   - role: Generative image research
     name: Little Wild Films
 gallery:
-  - src: /manus-storage/film-card-still_16d5ff5a.jpg
-    alt: A mossy forest study at blue hour.
+  - src: /manus-storage/mosslight-forest-gate_0bb6d6e6.jpg
+    alt: An ancient moss-covered gate lit by remembered footsteps.
     caption: First world-building pass.
-  - src: /manus-storage/hero-film-still_04dfca7c.jpg
-    alt: A forest path carrying a single amber light.
-    caption: Memory and light study.
+  - src: /manus-storage/mosslight-water-memory_3710abca.jpg
+    alt: A forest pool reflecting a different season.
+    caption: Memory and water study.
   - src: /manus-storage/film-card-still_16d5ff5a.jpg
-    alt: A distant valley glimpsed through the moss and trees.
+    alt: A distant valley glimpsed through moss and trees.
     caption: The forest remembers.
 relatedPosts:
   - teaching-a-machine-to-notice

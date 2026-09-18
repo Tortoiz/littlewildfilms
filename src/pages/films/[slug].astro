@@ -22,10 +22,10 @@ const structuredData = {
   name: entry.data.title,
   description,
   dateCreated: String(entry.data.year),
-  image: entry.data.heroImage,
+  image: entry.data.shareImage ?? entry.data.heroImage,
   productionCompany: { "@type": "Organization", name: "Little Wild Films" },
 };
 ---
-<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} type="video.other" ogImage={entry.data.heroImage} structuredData={structuredData}>
+<BaseLayout title={`${entry.data.title} — Little Wild Films`} description={description} type="video.other" ogImage={entry.data.shareImage ?? entry.data.heroImage} structuredData={structuredData}>
   <FilmDetail entry={entry} Content={Content} nextEntry={nextEntry} />
 </BaseLayout>

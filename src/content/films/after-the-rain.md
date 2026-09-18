@@ -8,6 +8,7 @@ featured: false
 logline: A city becomes strange when the last light goes out.
 heroImage: /manus-storage/hero-film-still_04dfca7c.jpg
 heroAlt: A moody cinematic landscape under a deep evening sky.
+shareImage: /manus-storage/after-rain-city_1d87a887.jpg
 posterImage: /manus-storage/hero-film-still_04dfca7c.jpg
 trailerUrl: null
 credits:
@@ -16,12 +17,12 @@ credits:
   - role: Cinematography
     name: In-house development
 gallery:
-  - src: /manus-storage/hero-film-still_04dfca7c.jpg
-    alt: A landscape holding the last light after rain.
+  - src: /manus-storage/after-rain-city_1d87a887.jpg
+    alt: A rain-darkened hill-town street reflecting a sodium lamp.
     caption: Location and weather study.
-  - src: /manus-storage/film-card-still_16d5ff5a.jpg
-    alt: A rain-darkened valley under a clearing sky.
-    caption: Atmosphere reference.
+  - src: /manus-storage/after-rain-window_a4e13233.jpg
+    alt: A figure watching the storm through a rain-streaked window.
+    caption: Interior light study.
   - src: /manus-storage/hero-film-still_04dfca7c.jpg
     alt: Distant hills emerging from the weather.
     caption: Transition frame.

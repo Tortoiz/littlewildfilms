@@ -8,6 +8,7 @@ featured: true
 logline: On the night the orchard forgets its seasons, a child follows one small lantern home.
 heroImage: /manus-storage/hero-film-still_04dfca7c.jpg
 heroAlt: A warm lantern glowing beside a path through a blue-hour mountain valley.
+shareImage: /manus-storage/lantern-frame-orchard_7409b10e.jpg
 posterImage: /manus-storage/hero-film-still_04dfca7c.jpg
 trailerUrl: null
 credits:
@@ -16,14 +17,14 @@ credits:
   - role: Visual development
     name: Little Wild Films
 gallery:
+  - src: /manus-storage/lantern-frame-orchard_7409b10e.jpg
+    alt: A lantern glowing beneath flowering apple branches.
+    caption: Orchard atmosphere frame.
+  - src: /manus-storage/lantern-frame-child_9d61f201.jpg
+    alt: A child carrying a lantern through tall silver grass.
+    caption: The walk home.
   - src: /manus-storage/hero-film-still_04dfca7c.jpg
-    alt: A distant amber light resting on a mossy path.
-    caption: First atmosphere frame.
-  - src: /manus-storage/film-card-still_16d5ff5a.jpg
-    alt: A blue mountain valley opening beyond the orchard.
-    caption: Worldbuilding and distance study.
-  - src: /manus-storage/hero-film-still_04dfca7c.jpg
-    alt: A warm point of light carried through the evening landscape.
+    alt: A warm point of light resting on a mossy path.
     caption: Lantern continuity frame.
 relatedPosts:
   - building-a-forest-that-feels-remembered
