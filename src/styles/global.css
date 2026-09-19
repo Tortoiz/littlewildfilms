@@ -10,6 +10,7 @@
   --ember: #b85d46;
   --line-dark: rgba(241, 235, 221, 0.2);
   --line-light: rgba(16, 19, 16, 0.16);
+  --kicker-gap: clamp(44px, 6vw, 88px);
   --ease-cinema: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -248,7 +249,8 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 @media (max-width: 800px) {
   .archive-page, .journal-archive { padding: 17vh 7vw 12vh; }
   .archive-header { display: block; margin-bottom: 9vh; }
-  .archive-header h1 { margin-top: 12vh; font-size: clamp(4.5rem, 17vw, 7rem); }
+  .archive-header > .inner-page-kicker { margin-bottom: 34px; }
+  .archive-header h1 { margin-top: 0; font-size: clamp(4.5rem, 17vw, 7rem); }
   .archive-header > p { max-width: 330px; margin-top: 28px; }
   .archive-grid, .journal-grid { grid-template-columns: 1fr; gap: 55px; }
   .archive-card-offset { margin-top: 0; }
@@ -339,7 +341,8 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 .breadcrumbs span:last-child { max-width: 220px; overflow: hidden; color: var(--gold); text-overflow: ellipsis; white-space: nowrap; }
 .studio-page, .contact-page { min-height: 100svh; }
 .studio-hero, .contact-hero { padding: 20vh 8vw 13vh; }
-.studio-hero h1, .contact-hero h1 { margin-top: 15vh; color: var(--night); font-size: clamp(5rem, 10vw, 10rem); }
+.studio-hero > .inner-page-kicker, .contact-hero > .inner-page-kicker { margin-bottom: var(--kicker-gap); }
+.studio-hero h1, .contact-hero h1 { margin-top: 0; color: var(--night); font-size: clamp(5rem, 10vw, 10rem); }
 .studio-hero h1 em, .contact-hero h1 em { color: var(--moss); }
 .studio-hero-intro, .contact-hero-intro { max-width: 470px; margin-top: 34px; color: #77776d; font-size: 18px; line-height: 1.5; }
 .studio-hero .dark-link, .contact-hero .dark-link { display: inline-block; margin-top: 42px; }
@@ -369,7 +372,8 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 @media (max-width: 800px) {
   .breadcrumbs { top: 90px; left: 7vw; right: 7vw; font-size: 9px; }
   .studio-hero, .contact-hero { padding: 17vh 7vw 11vh; }
-  .studio-hero h1, .contact-hero h1 { margin-top: 12vh; font-size: clamp(4.4rem, 16vw, 7rem); }
+  .studio-hero > .inner-page-kicker, .contact-hero > .inner-page-kicker { margin-bottom: 34px; }
+  .studio-hero h1, .contact-hero h1 { margin-top: 0; font-size: clamp(4.4rem, 16vw, 7rem); }
   .studio-hero-intro, .contact-hero-intro { font-size: 16px; }
   .studio-belief, .studio-services, .contact-details { padding: 10vh 7vw 12vh; }
   .studio-belief-grid, .contact-details-grid, .studio-approach-grid, .contact-brief-grid { grid-template-columns: 1fr; gap: 50px; margin-top: 8vh; }
@@ -495,16 +499,17 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 
 
 /* Unified section-kicker rhythm */
-section > .section-kicker { display: block; margin-bottom: clamp(34px, 5vw, 72px); }
+.section-kicker { display: block; margin-bottom: var(--kicker-gap); }
+section > .section-kicker { display: block; margin-bottom: var(--kicker-gap); }
 section > .section-kicker + * { margin-top: 0; }
-.manifesto > .section-kicker, .journal-aside > .section-kicker { margin-bottom: 0; }
+.manifesto > .section-kicker { margin-bottom: 0; }
 @media (max-width: 800px) {
-  section > .section-kicker { margin-bottom: 34px; }
+  .section-kicker, section > .section-kicker { margin-bottom: 34px; }
 }
 
 
 /* Homepage section rhythm: one consistent kicker-to-content gap */
-.home-section-kicker { margin-bottom: clamp(44px, 6vw, 88px) !important; }
+.home-section-kicker { margin-bottom: var(--kicker-gap) !important; }
 .intro .intro-content, .contact .contact-layout { margin-top: 0; }
 .films .section-heading { display: block; margin-bottom: 11vh; }
 .films .section-heading-main { display: grid; grid-template-columns: 1.35fr .8fr; gap: 5vw; align-items: end; }
