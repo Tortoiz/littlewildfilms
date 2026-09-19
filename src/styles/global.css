@@ -492,3 +492,12 @@ h1 em, h2 em { color: var(--gold); font-style: italic; }
 .site-nav { background: transparent; border-bottom: 0; box-shadow: none; backdrop-filter: none; }
 .site-nav[data-scrolled] { background: rgba(16,19,16,.98); border-bottom: 0; box-shadow: 0 8px 22px rgba(0,0,0,.22); backdrop-filter: none; }
 .page-shell:not(.page-dark) .site-nav[data-scrolled] { background: rgba(241,235,221,.98); border-bottom: 0; box-shadow: 0 8px 22px rgba(16,19,16,.12); backdrop-filter: none; }
+
+
+/* Unified section-kicker rhythm */
+section > .section-kicker { display: block; margin-bottom: clamp(34px, 5vw, 72px); }
+section > .section-kicker + * { margin-top: 0; }
+.manifesto > .section-kicker, .journal-aside > .section-kicker { margin-bottom: 0; }
+@media (max-width: 800px) {
+  section > .section-kicker { margin-bottom: 34px; }
+}
